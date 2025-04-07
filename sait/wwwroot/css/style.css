@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: "Rubik" , "sans-serif";
+    font-weight: 400px;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+header{
+    height: 100px;
+    background-color:#232536;
+    color:rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.logo-container {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.Logo_Text{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.Logo_Text a {
+    text-decoration: none;
+    color: white;
+}
+
+.Header_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+.information{
+    width: 120px;
+    text-align: center;
+    height: 4px;
+    background: #FFD050;
+    position: relative;
+    top: 25px;
+    margin-right: 25px;
+}
+
+
+.information h4 {
+    position: relative;
+    top: -60px;
+    font-size: 20px;
+}
+
+.information a {
+    text-decoration: none;
+    color: white;
+    transition:transform .5s;
+}
+.information:hover{
+    transform: scale(1.03);
+}
+.information:active{
+    transform: scale(0.90);
+}
+
+
+.Avatar {
+    margin-left: 880px !important;
+    display: flex !important; /* Включаем flex */
+    justify-content: center !important; /* Центрируем по горизонтали */
+    align-items: center !important; /* Центрируем по вертикали */
+    width: 160px !important;
+    height: 160px !important;
+    border-radius: 50% !important;
+    padding: 5px !important;
+    background: white !important;
+}
+
+    .Avatar img {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        border: 2px solid white !important;
+    }
+
+.Right{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+.Right button {
+    transition:transform .5s;
+    cursor: pointer;
+    border:none;
+    color: #232536;
+    font-size: 20px;
+    font-weight: bold;
+    width: 160px;
+    height:50px;
+    background-color:#FFD050;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.Right button:hover{
+    transform: scale(1.03);
+}
+.Right button:active{
+    transform: scale(0.97);
+}
+
+ .Settings_Button{
+    transition:transform .5s;
+ }
+
+ .Settings_Button:hover{
+    transform: scale(1.03);
+ }
+ 
+ .Settings_Button:active{
+    transform: scale(0.97);
+ }
+
+main h3 {
+    color:#3f3f41;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 40px;
+}
+
+main h1 {
+    color:#3f3f41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+.line{
+    display: flex;
+    height: 8px;
+    width: 1400px;
+    margin: auto;
+    
+    background: #FFD050;
+    
+}
+.how_we_work {
+    background-color:#9a8abea4;
+    height: 700px;
+}
+
+.hww_Text {
+    color:#2a2a2b;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:30px;
+    text-align: center;
+    font-size: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.hww_Img {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:30px;
+    margin-left: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.how_we_work img{
+    border-radius: 20px;
+}
+
+.Application_button{
+    text-decoration: none;
+    transition:transform .5s;
+    cursor: pointer;
+    border:none;
+    display:block;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 60px;
+    color: #232536;
+    font-weight: bold;
+    font-size: 35px;
+    width: 390px;
+    height:80px;
+    background-color:#FFD050;
+    border-radius: 10px;
+    
+}
+.Application{
+    text-decoration: none;
+}
+.Application_button:hover{
+    transform: scale(1.03);
+}
+.Application_button:active{
+    transform: scale(0.97);
+}
+
+footer {
+    font-family: "Rubik" , "sans-serif";
+    font-weight: 400px;
+    color: #979797;
+    background-color: #515153;
+    height: 100px;
+}
+
+.description{
+    padding-top:10px;
+    text-align: center;
+    font-size: 15px;
+    
+}
+
+
+a {
+    text-decoration: none;
+}
+

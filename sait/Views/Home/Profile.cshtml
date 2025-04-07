@@ -1,0 +1,110 @@
+﻿
+
+@model Microsoft.AspNetCore.Identity.IdentityUser
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <style>
+        
+        </style>
+    <title>PODBE.ru - Сайт по подбору персонала</title>
+</head>
+    <header>
+        <section class="logo-container">
+            <div class="Logo">
+            <img src="/img/logo.png" alt="Logotip" width="80px">
+        </div>
+        <div class="Logo_Text">
+            <a href="/Home/Index"><h1>PODBE.ru</h1> </a>
+        </div>
+        </section>
+        <section class="Header_grid">
+        <div class="information">
+                <a href="/Home/Index"><h4>Главная</h4></a>  
+            </div>
+         <div class="information">
+                <a href="/Home/Index"><h4>О нас</h4></a>
+            </div>
+         <div class="information">
+                <a href="https://support.google.com/"><h4>Поддержка</h4></a>
+            </div>
+        </section>
+        <section class="Right">
+            <div style="
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width:60px;
+margin-right:10px;
+        border-radius: 50% !important;
+        padding: 5px !important;
+        background: white !important;
+        ">
+            <img 
+                src="/img/avatar_test.png" 
+                alt="Avatar" 
+                style="
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+                border: 0.2px solid white !important;
+                "
+            />
+        </div>
+
+                <div style="text-decoration: none; font-family: 'Rubik', sans-serif; font-weight: 800; color:white; margin-right:20px;">
+            <a asp-controller="Home" asp-action="Profile" class="user-link" style="text-decoration: none; color: inherit;">
+                    <span class="user-name" style="font-family: 'Rubik', sans-serif; font-weight: 800; color: #white; margin-right:20px;">
+                    @User.Identity.Name
+                </span>
+            </a>
+        </div>
+            <div class="Settings_Button">
+            <a href="https://www.youtube.com/watch?v=7ZZK9Iprw5c&list=PL0MUAHwery4ot0KmgGxlBSB7rXssLeA6h&index=15&ab_channel=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%9B%D0%B0%D0%BC%D0%BA%D0%BE%D0%B2%E2%80%94FriendlyFrontend"> <img src="/img/Settings.svg" alt="Settings" width="60px"></a>
+        </div>
+        </section>
+    </header>
+    <main>
+        <h2>ПРОФИЛЬ</h2>
+        <section class="account_info">
+            <div class = "Avatar">
+            <img src="/img/avatar_test.png" alt="Avatar" width="200px" />
+            </div>
+            <h3>@Model.UserName</h3>
+            <h3>@Model.Email</h3>
+            <div class ="LogOut">
+                <form asp-controller="Home" asp-action="LogOut"  method="post" action="/Home/Logout" >
+                @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Выйти из аккаунта</button>
+</form>
+            </div>
+        </section>
+
+
+
+    </main>
+    <footer>    
+        <section class="description"> 
+            <p>Наш сайт использует ваши персональные данные для улучшения качества обслуживания, персонализации контента и анализа трафика. Продолжая использование сайта, вы соглашаетесь с обработкой ваших данных в соответствии с нашей Политикой конфиденциальности. Если вы не согласны с этим, пожалуйста, покиньте сайт.</p>
+        </section>
+    </footer>
+<body>
+
+</body>
+</html>

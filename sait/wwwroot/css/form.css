@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: "Rubik" , "sans-serif";
+    font-weight: 400px;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+header{
+    height: 100px;
+    background-color:#232536;
+    color:rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.logo-container {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.Logo_Text{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.Logo_Text a {
+    text-decoration: none;
+    color: white;
+}
+
+.Header_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+.information{
+    width: 120px;
+    text-align: center;
+    height: 4px;
+    background: #FFD050;
+    position: relative;
+    top: 25px;
+    margin-right: 25px;
+}
+
+
+.information h4 {
+    position: relative;
+    top: -60px;
+    font-size: 20px;
+}
+
+.information a {
+    text-decoration: none;
+    color: white;
+    transition:transform .5s;
+}
+.information:hover{
+    transform: scale(1.03);
+}
+.information:active{
+    transform: scale(0.90);
+}
+
+.Right{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+.Right button {
+    transition:transform .5s;
+    cursor: pointer;
+    border:none;
+    color: #232536;
+    font-size: 20px;
+    font-weight: bold;
+    width: 160px;
+    height:50px;
+    background-color:#FFD050;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.Right button:hover{
+    transform: scale(1.03);
+}
+.Right button:active{
+    transform: scale(0.97);
+}
+
+ .Settings_Button{
+    transition:transform .5s;
+ }
+
+ .Settings_Button:hover{
+    transform: scale(1.03);
+ }
+ 
+ .Settings_Button:active{
+    transform: scale(0.97);
+ }
+
+main h2 {
+    color:#3f3f41;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 40px;
+}
+main h3 {
+    color:#3f3f41;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 40px;
+}
+
+main h1 {
+    color:#3f3f41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+
+
+.Application {
+    display: grid;
+    
+    column-gap: 20px;
+    background-color: #9a8abea4;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    margin: auto;
+    align-items: center;
+    margin-bottom: 100px;
+    position: relative; 
+}
+
+input[type="text"], input[type="password"] , select {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    
+}
+select{
+    color:#888;
+}
+ option  {
+    color:#000000;
+}
+
+[data-selected] {
+    color: #000;
+}
+
+.Application button {
+    transition: transform .5s;
+    cursor: pointer;
+    border: none;
+    color: #232536;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%; 
+    height: 60px;
+    margin-top: 30px;
+    background-color: #FFD050;
+    border-radius: 10px;
+    text-align: center;
+    grid-column: 1 / -1; 
+    justify-self: stretch; 
+    max-width: 600px; 
+    
+    margin-left:90px;
+}
+.btn:hover {
+    transform: scale(1.03);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+
+footer {
+    font-family: "Rubik" , "sans-serif";
+    font-weight: 400px;
+    color: #979797;
+    background-color: #515153;
+    height: 100px;
+}
+
+.description{
+    padding-top:10px;
+    text-align: center;
+    font-size: 15px;
+    
+}
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd ;
+    border-color: #badbcc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+
+.text-danger {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
+

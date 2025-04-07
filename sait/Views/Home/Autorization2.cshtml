@@ -1,0 +1,103 @@
+﻿@model sait.Models.Registration
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/autorization2.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <style>
+        
+        </style>
+    <title>PODBE.ru - Авторизация</title>
+</head>
+    <header>
+        <section class="logo-container">
+            <div class="Logo">
+            <img src="/img/logo.png" alt="Logotip" width="80px">
+        </div>
+        <div class="Logo_Text">
+            <a href="/Home/Index"><h1>PODBE.ru</h1> </a>
+        </div>
+        </section>
+        <section class="Header_grid">
+        <div class="information">
+                <a href="/Home/Index"><h4>Главная</h4></a>  
+            </div>
+         <div class="information">
+                <a href="/Home/Index"><h4>О нас</h4></a>
+            </div>
+         <div class="information">
+                <a href="https://support.google.com/"><h4>Поддержка</h4></a>
+            </div>
+        </section>
+        <section class="Right">
+            <a href="/Home/Autorization1"><button type="Login_Button">Войти</button></a>
+            <div class="Settings_Button">
+            <a href="https://www.youtube.com/watch?v=7ZZK9Iprw5c&list=PL0MUAHwery4ot0KmgGxlBSB7rXssLeA6h&index=15&ab_channel=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%9B%D0%B0%D0%BC%D0%BA%D0%BE%D0%B2%E2%80%94FriendlyFrontend"> <img src="/img/Settings.svg" alt="Settings" width="60px"></a>
+        </div>
+        </section>
+    </header>
+    <main>
+        <h2>РЕГИСТРАЦИЯ</h2>
+        <div class="wrapper">
+            <form method="post" asp-controller="Home" asp-action = "Reg_Check">
+                
+                <span asp-validation-for="UserName" 
+      style="color: #c90606;
+             font-size: 14px;
+             margin-left:auto;
+             display: flex;
+             font-weight: 500;
+             padding-left: 5px;">  
+                </span>
+            <input asp-for="UserName" , type="text" placeholder="Имя пользователя" maxlength="500"  >
+            <span asp-validation-for="Email" 
+      style="color: #c90606;
+             font-size: 14px;
+             margin-left:auto;
+             display: flex;
+             font-weight: 500;
+             padding-left: 5px;">  
+                </span>
+            <input asp-for="Email" , type="text" placeholder="Электронная почта"  >
+            <span asp-validation-for="Password" 
+      style="color: #c90606;
+             font-size: 14px;
+             margin-left:auto;
+             display: flex;
+             font-weight: 500;
+             padding-left: 5px;">  
+                </span>
+
+
+           
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Password" , type="password" placeholder="Пароль"  >
+
+            
+            
+            <button type="submit" , class="btn">Зарегистрироваться</button>
+            </form>
+        </div>
+
+    </main>
+    <footer>    
+        <section class="description"> 
+            <p>Наш сайт использует ваши персональные данные для улучшения качества обслуживания, персонализации контента и анализа трафика. Продолжая использование сайта, вы соглашаетесь с обработкой ваших данных в соответствии с нашей Политикой конфиденциальности. Если вы не согласны с этим, пожалуйста, покиньте сайт.</p>
+        </section>
+    </footer>
+<body>
+
+</body>
+</html>
