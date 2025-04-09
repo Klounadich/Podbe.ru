@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -7,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace sait.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class DB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,7 +36,8 @@ namespace sait.Migrations
                     NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: true),
-                    
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace sait.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Authorizations",
+                name: "Authorization",
                 columns: table => new
                 {
                     Aut_UserName = table.Column<string>(type: "text", nullable: false),
@@ -56,7 +56,7 @@ namespace sait.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Registrations",
+                name: "Registration",
                 columns: table => new
                 {
                     UserName = table.Column<string>(type: "character varying(55)", maxLength: 55, nullable: false),
@@ -68,7 +68,7 @@ namespace sait.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Requests",
+                name: "Request",
                 columns: table => new
                 {
                     Post = table.Column<string>(type: "text", nullable: false),
@@ -84,7 +84,7 @@ namespace sait.Migrations
                     Adress = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Surname = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     WorkerPost = table.Column<string>(type: "text", nullable: false)
                 },
@@ -255,13 +255,13 @@ namespace sait.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Authorizations");
+                name: "Authorization");
 
             migrationBuilder.DropTable(
-                name: "Registrations");
+                name: "Registration");
 
             migrationBuilder.DropTable(
-                name: "Requests");
+                name: "Request");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

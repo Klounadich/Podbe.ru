@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="~/css/profile.css">
     <link rel="stylesheet" href="/css/normalize.css">
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,10 +88,23 @@ margin-right:10px;
             </div>
             <h3>@Model.UserName</h3>
             <h3>@Model.Email</h3>
+
+            <h2>ВАШИ ЗАЯВКИ</h2>
+            <div class ="req_container">
+                <div class ="top">
+                    <div class="column">Должность</div>
+                    <div class="column">Статус</div>
+                </div>
+                    <div class="Cont_Info">
+                        Здесь заявки
+
+                    </div>
+            </div>
+
             <div class ="LogOut">
                 <form asp-controller="Home" asp-action="LogOut"  method="post" action="/Home/Logout" >
                 @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-danger">Выйти из аккаунта</button>
+    <button type="submit" class="btn_btn-danger">Выйти из аккаунта</button>
 </form>
             </div>
         </section>
