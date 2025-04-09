@@ -125,6 +125,9 @@ main h2 {
     display: flex;
     font-size: 40px;
 }
+main h3 {
+    color:aliceblue !important;
+}
 
 .account_info {
     text-align:center;
@@ -173,4 +176,70 @@ footer {
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid white;
+    }
+
+.req_container {
+    width: 100% !important; /* Ширина шторки */
+    margin: 20px auto !important;
+    font-family: "Rubik", "sans-serif" !important;
+}
+
+.top {
+    background: #FFD050 !important;
+    border-radius: 15px 15px 0 0 !important; /* Закругление только сверху */
+    padding: 15px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+
+.column {
+    color: #3f3f41 !important;
+    text-align: center !important;
+    padding: 5px 10px !important;
+    flex-grow: 1 !important;
+}
+
+
+
+.Cont_Info {
+    background: #f8f8f8 !important;
+    border: 1px solid #ddd !important;
+    border-top: none !important; /* Убираем границу сверху */
+    padding: 20px !important;
+    min-height: 200px !important; /* Минимальная высота контентной части */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+
+
+
+.btn_btn-danger {
+    text-decoration: none;
+    transition: transform .5s;
+    cursor: pointer;
+    border: none;
+    display: block;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 60px;
+    color: #232536;
+    font-weight: bold;
+    font-size: 20px;
+    width: 190px;
+    height: 50px;
+    background-color: #FFD050;
+    border-radius: 10px;
+}
+
+
+
+    .btn_btn-danger:hover {
+        transform: scale(1.03);
+    }
+
+    .btn_btn-danger:active {
+        transform: scale(0.97);
     }

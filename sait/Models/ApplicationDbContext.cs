@@ -10,27 +10,40 @@ namespace sait.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
 
-        public DbSet<Registration> Registrations { get; set; }
-        public DbSet<Authorization> Authorizations { get; set; }
-        public DbSet<Request> Requests { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Важно вызывать базовый метод для Identity
 
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                // Игнорируем ненужные столбцы
+                entity.Ignore(u => u.PhoneNumber);
+                entity.Ignore(u => u.PhoneNumberConfirmed);
+                entity.Ignore(u => u.TwoFactorEnabled);
+                entity.Ignore(u => u.LockoutEnd);
+                entity.Ignore(u => u.LockoutEnabled);
+                entity.Ignore(u => u.AccessFailedCount);
+
+                // Переименовываем таблицу (опционально)
+                
+            });
+
             // Если Authorization должен иметь ключ
             modelBuilder.Entity<Authorization>()
-                .HasNoKey(); // Предполагая, что в классе Authorization есть свойство Id
+                .HasNoKey(); 
 
             modelBuilder.Entity<Registration>()
                 .HasNoKey();
 
             modelBuilder.Entity<Request>()
                 .HasNoKey();
-            // ИЛИ если Authorization должен быть без ключа
-            // modelBuilder.Entity<Authorization>().HasNoKey();
 
-            // Дополнительные конфигурации для других сущностей, если нужно
+            
+
         }
     }
 }

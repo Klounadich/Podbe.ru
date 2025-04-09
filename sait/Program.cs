@@ -11,9 +11,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
     
 
-// 2. Добавляем Identity (ОДИН РАЗ!)
+// НАСТРОЙКА IDENTITY
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
+
+    options.User.RequireUniqueEmail = true;
+
+    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Password.RequireDigit = true;       // Не требовать цифры
     options.Password.RequireLowercase = true;   // Не требовать строчные буквы
     options.Password.RequireUppercase = false;   // Не требовать заглавные буквы
@@ -28,6 +33,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 // 3. Настройка cookies
 builder.Services.ConfigureApplicationCookie(options =>
 {
+
     options.LoginPath = "/Home/Autorization1";
     options.AccessDeniedPath = "/Account/AccessDenied";
     options.Cookie.HttpOnly = true;
