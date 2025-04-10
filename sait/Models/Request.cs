@@ -3,8 +3,8 @@
 namespace sait.Models
 {
     public class Request
-    { 
-        // Инфа о кандидате
+    {
+        
         [Required(ErrorMessage = "Заполните поле!")]
         public string Post {  get; set; } = null!;
         [Required(ErrorMessage = "Заполните поле!")]
@@ -51,5 +51,10 @@ namespace sait.Models
 
         [Required(ErrorMessage = "Заполните поле!")]
         public string WorkerPost { get; set; } = null!;
+
+        public string ID_sender { get; set; }
+
+        public bool Status { get; set; }
+
     }
 }

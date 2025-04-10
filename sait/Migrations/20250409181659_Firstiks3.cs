@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace sait.Migrations
 {
     /// <inheritdoc />
-    public partial class DB : Migration
+    public partial class Firstiks3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,11 +30,11 @@ namespace sait.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: true),
                     SecurityStamp = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
@@ -62,31 +62,6 @@ namespace sait.Migrations
                     UserName = table.Column<string>(type: "character varying(55)", maxLength: 55, nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Request",
-                columns: table => new
-                {
-                    Post = table.Column<string>(type: "text", nullable: false),
-                    Education_lvl = table.Column<string>(type: "text", nullable: false),
-                    Work_exp = table.Column<string>(type: "text", nullable: false),
-                    Skills = table.Column<string>(type: "text", nullable: false),
-                    schedule = table.Column<string>(type: "text", nullable: false),
-                    Age = table.Column<string>(type: "text", nullable: false),
-                    salary = table.Column<string>(type: "text", nullable: false),
-                    merit = table.Column<string>(type: "text", nullable: false),
-                    Company_name = table.Column<string>(type: "text", nullable: false),
-                    Field = table.Column<string>(type: "text", nullable: false),
-                    Adress = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Surname = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "character varying(12)", maxLength: 12, nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    WorkerPost = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -259,9 +234,6 @@ namespace sait.Migrations
 
             migrationBuilder.DropTable(
                 name: "Registration");
-
-            migrationBuilder.DropTable(
-                name: "Request");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

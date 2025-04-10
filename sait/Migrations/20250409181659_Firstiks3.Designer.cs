@@ -11,8 +11,8 @@ using sait.Data;
 namespace sait.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250408174325_DB")]
-    partial class DB
+    [Migration("20250409181659_Firstiks3")]
+    partial class Firstiks3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,76 +185,6 @@ namespace sait.Migrations
                         .HasColumnType("character varying(55)");
 
                     b.ToTable("Registration");
-                });
-
-            modelBuilder.Entity("sait.Models.Request", b =>
-                {
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Company_name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Education_lvl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Field")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("character varying(12)");
-
-                    b.Property<string>("Post")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Skills")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Work_exp")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("WorkerPost")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("merit")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("salary")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("schedule")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.ToTable("Request");
                 });
 
             modelBuilder.Entity("sait.Models.User", b =>
