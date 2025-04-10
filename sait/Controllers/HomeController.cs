@@ -79,88 +79,115 @@ namespace sait.Controllers
             }
             return View("Form");
         }
-        public IActionResult Check(Request req) // Страница авторизации (Views/Home/Autorization1.cshtml)
+        public async Task<IActionResult> Check(Request req) // Страница авторизации (Views/Home/Autorization1.cshtml)
         {
-            
+            var id_sender = _userManager.GetUserId(User);
+            Console.WriteLine("Метод Check вызван.");
+
+            ModelState.Remove("ID_sender");
             if (ModelState.IsValid)
             {
+                Console.WriteLine("Данные отправлены.");
                 var connectionString = _configuration.GetConnectionString("PostgreSQLConnection");
                 using (var formConnection = new NpgsqlConnection(connectionString))
                 {
                     formConnection.Open();
 
                     var sql = @"
-                    INSERT INTO candidat_request (
-                        ""Должность"",
-                        ""Образование"",
-                        ""Опыт Работы"",
-                        ""Навыки"",
-                        ""График Работы"",
-                        ""Возраст"",
-                        ""Зарплата"",
-                        ""Личные качества""
-                    ) VALUES (
-                        @Должность,
-                        @Образование,
-                        @ОпытРаботы,
-                        @Навыки,
-                     @ГрафикРаботы,
-                     @Возраст,
-                     @Зарплата,
-                     @ЛичныеКачества
-                    )";
+                    INSERT INTO ""Request"" (
+                        ""Post"",
+                        ""Education_lvl"" ,
+                        ""Work_exp"",
+                        ""Skills"",
+                        ""shedule"",    
+                        ""Age"",
+                        ""salary"",
+                        ""merit"",
+                        ""Company_name"",
+                        ""Field"",
+                        ""Adress"",
+                        ""Name"",
+                        ""Surname"",
+                        ""PhoneNumber"",
+                        ""Email"",
+                        ""WorkerPost"",
+                        ""ID_sender"",
+                        ""Status""
 
+                    ) VALUES (
+                       @Post,
+                        @Education_lvl ,
+                        @Work_exp,
+                        @Skills,
+                        @shedule,    
+                        @Age,
+                        @salary,
+                        @merit,
+                        @Company_name,
+                        @Field,
+                        @Adress,
+                        @Name,
+                        @Surname,
+                        @PhoneNumber,
+                        @Email,
+                        @WorkerPost,
+                         @ID_sender,
+                        @Status
+                    )";
+                    
                     var command = new NpgsqlCommand(sql ,formConnection);
-                    command.Parameters.AddWithValue("@Должность", req.Post);
-                    command.Parameters.AddWithValue("@Образование", req.Education_lvl);
-                    command.Parameters.AddWithValue("@ОпытРаботы", req.Work_exp);
-                    command.Parameters.AddWithValue("@Навыки", req.Skills);
-                    command.Parameters.AddWithValue("@ГрафикРаботы", req.schedule);
-                    command.Parameters.AddWithValue("@Возраст", req.Age);
-                    command.Parameters.AddWithValue("@Зарплата", req.salary);
-                    command.Parameters.AddWithValue("@ЛичныеКачества", req.merit);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@Post", req.Post);
+                    command.Parameters.AddWithValue("@Education_lvl", req.Education_lvl);
+                    command.Parameters.AddWithValue("@Work_exp", req.Work_exp);
+                    command.Parameters.AddWithValue("@Skills", req.Skills);
+                    command.Parameters.AddWithValue("@shedule", req.schedule);
+                    command.Parameters.AddWithValue("@Age", req.Age);
+                    command.Parameters.AddWithValue("@salary", req.salary);
+                    command.Parameters.AddWithValue("@merit", req.merit);
+                    command.Parameters.AddWithValue("@Company_name", req.Company_name);
+                    command.Parameters.AddWithValue("@Field", req.Field);
+                    command.Parameters.AddWithValue("@Adress", req.Adress);
+                    command.Parameters.AddWithValue("@Name", req.Name);
+                    command.Parameters.AddWithValue("@Surname", req.Surname);
+                    command.Parameters.AddWithValue("@PhoneNumber", req.PhoneNumber);
+                    command.Parameters.AddWithValue("@Email", req.Email);
+                    command.Parameters.AddWithValue("@WorkerPost", req.WorkerPost);
 
-                    var sql1 = @"
-                    INSERT INTO sender_request (
-                        ""Название компании"",
-                        ""Сфера деятельности"",
-                        ""Юр. Адрес"",
-                        ""Имя"",
-                        ""Фамилия"",
-                        ""Номер телефона"",
-                        ""Электронная почта"",
-                        ""Занимаемая Должность""
-                    ) VALUES (
-                        @Названиекомпании,
-                        @Сферадеятельности,
-                        @Юр.Адрес,
-                        @Имя,
-                     @Фамилия,
-                     @Номертелефона,
-                     @Электроннаяпочта,
-                     @ЗанимаемаяДолжность
-                    )";
+                    
+                    command.Parameters.AddWithValue("@ID_sender", id_sender);
+                    command.Parameters.AddWithValue("@Status", req.Status);
 
-                    var command2 = new NpgsqlCommand(sql1,formConnection);
-                    command2.Parameters.AddWithValue("@НазваниеКомпании", req.Company_name);
-                    command2.Parameters.AddWithValue("@Сферадеятельности" , req.Field);
-                    command2.Parameters.AddWithValue("@Юр.Адрес" , req.Adress);
-                    command2.Parameters.AddWithValue("@Имя" , req.Name);
-                    command2.Parameters.AddWithValue("@Фамилия" , req.Surname);
-                    command2.Parameters.AddWithValue("@Номертелефона", req.PhoneNumber);
-                    command2.Parameters.AddWithValue("@Электроннаяпочта" , req.Email);
-                    command2.Parameters.AddWithValue("@ЗанимаемаяДолжность", req.WorkerPost);
-                    command2.ExecuteNonQuery();
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        TempData["SuccessMessage"] = "Заявка успешно отправлена!";
+                        return RedirectToAction("Form");
+                    }
+                    
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Ошибка: {ex.Message}");
+                        TempData["Error"] = "Произошла ошибка. Попробуйте позже.";
+                        return View("Form", req);
+                    }
 
+                    
 
+                }
 
+                
 
+            }
 
-
-
-                    TempData["SuccessMessage"] = "Заявка успешно отправлена!";
-                    return RedirectToAction("Form");
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("❌ Ошибки валидации ModelState:");
+                foreach (var entry in ModelState)
+                {
+                    foreach (var error in entry.Value.Errors)
+                    {
+                        Console.WriteLine($"Поле: {entry.Key}, Ошибка: {error.ErrorMessage}");
+                    }
                 }
             }
             return View("Form", req);
