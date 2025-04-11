@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -52,17 +53,72 @@ namespace sait.Controllers
         }
 
         [Authorize]
+        [Authorize]
         public async Task<IActionResult> Profile()
         {
+            var email = User.FindFirstValue(ClaimTypes.Email);
             var user = await _userManager.GetUserAsync(User);
-
             if (user == null)
             {
-                return RedirectToAction("Profile");
+                return RedirectToAction("Login");
             }
-            return View(user);
+
+            var requests = await GetUserRequests(user.Id);
+
+            var model = new ProfileView
+            {
+                Email = email,
+                UserName = user, // Или UserName = user.UserName
+                Requests = requests
+            };
+
+            return View(model);
         }
 
+        // Новый метод для получения данных (без возврата представления)
+        private async Task<List<Request>> GetUserRequests(string userId)
+        {
+            var requests = new List<Request>();
+            var connectionString = _configuration.GetConnectionString("PostgreSQLConnection");
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                var sql = @"SELECT * FROM ""Request"" WHERE ""ID_sender"" = @userId";
+
+                using (var command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            requests.Add(new Request
+                            {
+                                // Заполните ВСЕ необходимые поля
+                                Post = reader["Post"]?.ToString(),
+                                Status = reader["status"] != DBNull.Value && Convert.ToBoolean(reader["status"])
+
+                            });
+                        }
+                    }
+                }
+            }
+
+            return requests;
+        }
+
+        // Отдельный метод для отображения страницы с заявками (если он вам нужен)
+        public async Task<IActionResult> Request_Checker()
+        {
+            var userId = _userManager.GetUserId(User);
+            
+
+            var requests = await GetUserRequests(userId);
+            return View(requests);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOut()

@@ -1,6 +1,5 @@
-﻿
-
-@model Microsoft.AspNetCore.Identity.IdentityUser
+﻿@model sait.Models.ProfileView
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Профиль";
 }
@@ -89,24 +88,67 @@ margin-right:10px;
             <h3>@Model.UserName</h3>
             <h3>@Model.Email</h3>
 
-            <h2>ВАШИ ЗАЯВКИ</h2>
+            
             <div class ="req_container">
                 <div class ="top">
-                    <div class="column">Должность</div>
-                    <div class="column">Статус</div>
+                    <div class="column"><h2>ВАШИ ЗАЯВКИ</h2></div>
+                    
                 </div>
-                    <div class="Cont_Info">
-                        Здесь заявки
+            @if (Model.Requests.Any())
+            {
+        <div class="Cont_Info">
+            <table>
+                    
+                        @foreach (var request in Model.Requests)
+                        {
+                                    
+                        <tr>
+                                    <div class="content-block">
+                            <h4>@request.Post</h4>
+                                @if (request.Status == false)
+                                {
+                            <div class="Status">
+                            <h4>На рассмотрении</h4>
+                                    </div>
+                                }
 
-                    </div>
-            </div>
 
-            <div class ="LogOut">
-                <form asp-controller="Home" asp-action="LogOut"  method="post" action="/Home/Logout" >
-                @Html.AntiForgeryToken()
-    <button type="submit" class="btn_btn-danger">Выйти из аккаунта</button>
-</form>
-            </div>
+
+                                @if (request.Status == null)
+                                {
+                                        <div class="Status">
+                                        <h4>Error</h4>
+                                                </div>
+                                }
+
+                                @if (request.Status == true)
+                                {
+                                        <div class="StatusGood">
+                                        <h4>Выполнена</h4>
+                                                </div>
+                                }
+                                    </div>
+                            <div class="Line"></div>
+                            
+                        </tr>
+                        }
+            </table>
+        </div>
+            }
+            else
+            {
+        <div class="No_request">
+                <h4>У вас  пока нет  заявок... :(</h4>
+                <a asp-controller="Home" asp-action="Form" ><h4>Оставить заявку?</h4></a> 
+        </div>
+            }
+
+<div class="LogOut">
+    <form asp-controller="Home" asp-action="LogOut" method="post">
+                    @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Выйти из аккаунта</button>
+    </form>
+</div>
         </section>
 
 
