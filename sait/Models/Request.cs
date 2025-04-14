@@ -56,5 +56,9 @@ namespace sait.Models
 
         public bool Status { get; set; }
 
+
+
+        public string Req_Created { get; set; }
+
     }
 }

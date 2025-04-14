@@ -9,6 +9,8 @@ namespace sait.Models
         public string Email { get; set; }
 
         public bool Status {  get; set; }
+
+        
         public IEnumerable<Request> Requests { get; set; }
     }
 }

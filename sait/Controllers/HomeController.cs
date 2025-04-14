@@ -56,6 +56,7 @@ namespace sait.Controllers
         [Authorize]
         public async Task<IActionResult> Profile()
         {
+            
             var email = User.FindFirstValue(ClaimTypes.Email);
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -69,7 +70,8 @@ namespace sait.Controllers
             {
                 Email = email,
                 UserName = user, // Или UserName = user.UserName
-                Requests = requests
+                Requests = requests,
+                
             };
 
             return View(model);
@@ -93,13 +95,18 @@ namespace sait.Controllers
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
+                        Console.WriteLine("Вообще дошли до сюда");
                         while (await reader.ReadAsync())
                         {
                             requests.Add(new Request
                             {
+
                                 // Заполните ВСЕ необходимые поля
                                 Post = reader["Post"]?.ToString(),
-                                Status = reader["status"] != DBNull.Value && Convert.ToBoolean(reader["status"])
+                                Status = reader["status"] != DBNull.Value && Convert.ToBoolean(reader["status"]),
+
+                                Req_Created = reader["Req_Created"]?.ToString().Substring(0, 10)
+
 
                             });
                         }
@@ -139,7 +146,7 @@ namespace sait.Controllers
         {
             var id_sender = _userManager.GetUserId(User);
             Console.WriteLine("Метод Check вызван.");
-
+            ModelState.Remove("Req_Created");
             ModelState.Remove("ID_sender");
             if (ModelState.IsValid)
             {
@@ -168,7 +175,8 @@ namespace sait.Controllers
                         ""Email"",
                         ""WorkerPost"",
                         ""ID_sender"",
-                        ""Status""
+                        ""Status"",
+                        ""Req_Created""
 
                     ) VALUES (
                        @Post,
@@ -188,7 +196,8 @@ namespace sait.Controllers
                         @Email,
                         @WorkerPost,
                          @ID_sender,
-                        @Status
+                        @Status,
+                        @Req_Created
                     )";
                     
                     var command = new NpgsqlCommand(sql ,formConnection);
@@ -208,7 +217,7 @@ namespace sait.Controllers
                     command.Parameters.AddWithValue("@PhoneNumber", req.PhoneNumber);
                     command.Parameters.AddWithValue("@Email", req.Email);
                     command.Parameters.AddWithValue("@WorkerPost", req.WorkerPost);
-
+                    command.Parameters.AddWithValue("@Req_Created", DateTime.Now);
                     
                     command.Parameters.AddWithValue("@ID_sender", id_sender);
                     command.Parameters.AddWithValue("@Status", req.Status);
@@ -243,6 +252,8 @@ namespace sait.Controllers
                     foreach (var error in entry.Value.Errors)
                     {
                         Console.WriteLine($"Поле: {entry.Key}, Ошибка: {error.ErrorMessage}");
+                        TempData["Error"] = "Произошла ошибка. Попробуйте позже.";
+                        return View("Form", req);
                     }
                 }
             }
