@@ -40,6 +40,21 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromDays(15);
 });
 
+// Авта через гуглу
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+    {
+        options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+
+        // Опционально: указать scope для доступа к дополнительным данным
+        options.Scope.Add("profile");
+        options.Scope.Add("email");
+
+        // Опционально: изменить URL перенаправления, если стандартный не подходит
+        // options.CallbackPath = "/custom-signin-google";
+    });
+
 // 4. Добавляем поддержку контроллеров и представлений
 builder.Services.AddControllersWithViews();
 

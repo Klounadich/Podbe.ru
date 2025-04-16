@@ -6,7 +6,7 @@ namespace sait.Models
     public class Registration 
     {
         
-        [StringLength(55 , ErrorMessage = "Имя пользователя больше 55 символов!")]
+        [StringLength(15 , ErrorMessage = "Имя пользователя больше 15 символов!")]
         [Required(ErrorMessage = "Заполните поле!")]
         public string UserName { get; set; }
         [EmailAddress(ErrorMessage ="Ваш адрес почты не соответсвует формату")]

@@ -373,6 +373,88 @@ namespace sait.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Google(string provider = "Google", string returnUrl = null)
+        {
+            // Генерируем URL для обратного вызова
+            var redirectUrl = Url.Action("GoogleCallback", "Home", new { returnUrl });
+
+            // Настраиваем свойства аутентификации
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+
+            // Перенаправляем к Google
+            return Challenge(properties, provider);
+        }
+
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GoogleCallBack(string returnUrl = null, string remoteError = null) 
+        {
+            if (remoteError != null) {
+                return RedirectToAction("Autorization1", new { message = "Произошла Ошибка , попробуйте позже" });
+
+            }
+
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("Login");
+            }
+                
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider , info.ProviderKey, isPersistent: true);
+            if (result.Succeeded) {
+
+                await _signInManager.UpdateExternalAuthenticationTokensAsync(info);
+                return RedirectToAction("Profile");
+            }
+
+            if (result.IsLockedOut || result.IsNotAllowed) {
+
+                return RedirectToAction("--------");
+            }
+
+            else
+            {
+                var UserName = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+                string[] parts = UserName.Split('@');
+                if (parts.Length == 2) // чистка ника от гмайла
+                {
+                    string username = parts[0];
+                    UserName=username;
+                }
+                    var Email = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+
+
+                var user = new User
+                {
+                    UserName = UserName,
+                    Email = Email,
+                };
+                var logresult= await _userManager.CreateAsync(user);
+
+                if (logresult.Succeeded) 
+                {
+                    await _userManager.AddLoginAsync(user, info);
+
+                    // Входим
+                    await _signInManager.SignInAsync(user, isPersistent: true);
+                    await _signInManager.UpdateExternalAuthenticationTokensAsync(info);
+
+                    return RedirectToAction("Profile");
+
+
+
+                }
+            }
+            return View(info);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Authorize (Authorization aut)
         {
             if (!ModelState.IsValid)
