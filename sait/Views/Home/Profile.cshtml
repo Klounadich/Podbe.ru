@@ -104,13 +104,17 @@ margin-right:10px;
                                     
                         <tr>
                                     <div class="content-block">
-                            <h4>@request.Post</h4>
-                            <h4>@request.Req_Created</h4>
+                                            <div class ="profession-title"><h4>@request.Post</h4></div>
+                                           <div class ="profession-date"> <h4>@request.Req_Created</h4></div>
                                 @if (request.Status == false)
                                 {
+                              <div class ="right-section">
                             <div class="Status">
                             <h4>На рассмотрении</h4>
+                                        
                                     </div>
+                                                <div class= "req_settings"><img src="/img/req_settings.svg" alt="Req_settings" width = "40px" /></div>
+                                                </div>   
                                 }
 
 
@@ -124,11 +128,15 @@ margin-right:10px;
 
                                 @if (request.Status == true)
                                 {
+                                                <div class ="right-section">
                                         <div class="StatusGood">
                                         <h4>Выполнена</h4>
                                                 </div>
+                                                            <div class= "req_settings"><img src="/img/req_settings.svg" alt="Req_settings" width = "40px" /></div>
+                                                                        </div>
                                 }
                                     </div>
+                                    
                             <div class="Line"></div>
                             
                         </tr>

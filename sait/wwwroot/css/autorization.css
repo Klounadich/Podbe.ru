@@ -132,6 +132,11 @@ main h1 {
     font-size: 60px;
 }
 
+main h3 {
+    color: #3f3f41;
+    
+}
+
 
 
 .wrapper {
@@ -159,6 +164,22 @@ input[type="text"], input[type="password"] {
     box-sizing: border-box;
 }
 
+.Signgoogle {
+    transition: transform .5s;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transform: translateY(-5px);
+}
+
+    .Signgoogle:hover {
+        transform: scale(1.03);
+    }
+
+    .Signgoogle:active{
+        transform: scale(0.97);
+    }
 
 
 .btn {
