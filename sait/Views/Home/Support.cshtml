@@ -1,7 +1,7 @@
-﻿@model sait.Models.Authorization
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model sait.Models.Support
 @{
-    ViewData["Title"] = "Авторизация";
+    ViewData["Title"] = "PODBE.ru";
 }
 
 <!DOCTYPE html>
@@ -9,16 +9,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/autorization.css">
     <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/support.css">
+    <link rel="stylesheet" href="script.js">
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="icon" href="/img/logo.png" type="image/x-icon">
-    <style>
-
-        </style>
-    <title>PODBE.ru - Авторизация</title>
+    <title>PODBE.ru - Сайт по подбору персонала</title>
 </head>
     <header>
         <section class="logo-container">
@@ -31,55 +29,69 @@
         </section>
         <section class="Header_grid">
         <div class="information">
-                <a href="/Home/Index"><h4>Главная</h4></a>  
+                 <a asp-controller="Home" asp-action="Index"><h4>Главная</h4></a>  
             </div>
          <div class="information">
-                <a href="/Home/Index"><h4>О нас</h4></a>
+                <a asp-controller="Home" asp-action="Index"><h4>О нас</h4></a>
             </div>
          <div class="information">
-                <a asp-controller="Home" asp-action="Support"><h4>Поддержка</h4></a>
+                <a href="#"><h4>Поддержка</h4></a>
             </div>
         </section>
         <section class="Right">
-            <a href="#"><button type="Login_Button">Войти</button></a>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+        <div style="
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width:60px;
+margin-right:10px;
+        border-radius: 50% !important;
+        padding: 5px !important;
+        background: white !important;
+            ">
+                <img 
+                    src="/img/avatar_test.png" 
+                    alt="Avatar" 
+                    style="
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+                border: 0.2px solid white !important;
+                    "
+                />
+            </div>
+
+                    <div style="text-decoration: none; font-family: 'Rubik', sans-serif; font-weight: 800; color:white; margin-right:20px;">
+                <a asp-controller="Home" asp-action="Profile" class="user-link" style="text-decoration: none; color: inherit;">
+                        <span class="user-name" style="font-family: 'Rubik', sans-serif; font-weight: 800; color: #white; margin-right:20px;">
+                        @User.Identity.Name
+                    </span>
+                </a>
+            </div>
+
+        }
+
+        else
+        {
+                        <a href="/Home/Autorization1"><button type="Login_Button">Войти</button></a>
+        }
             <div class="Settings_Button">
             <a href="https://www.youtube.com/watch?v=7ZZK9Iprw5c&list=PL0MUAHwery4ot0KmgGxlBSB7rXssLeA6h&index=15&ab_channel=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%9B%D0%B0%D0%BC%D0%BA%D0%BE%D0%B2%E2%80%94FriendlyFrontend"> <img src="/img/Settings.svg" alt="Settings" width="60px"></a>
         </div>
         </section>
     </header>
     <main>
-        <h2>АВТОРИЗАЦИЯ</h2>
-        <div class="wrapper">
-       <form method="post"  asp-controller="Home"  asp-action="Authorize">
-                <span asp-validation-for="Aut_UserName" 
-      style="color: #c90606;
-             font-size: 14px;
-             margin-left:auto;
-             display: flex;
-             font-weight: 500;
-             padding-left: 5px;">  
-                </span>
-            <input asp-for="Aut_UserName" , type="text" placeholder="Имя пользователя" >
-            <span asp-validation-for="Aut_Password" 
-      style="color: #c90606;
-             font-size: 14px;
-             margin-left:auto;
-             display: flex;
-             font-weight: 500;
-             padding-left: 5px;">  
-                </span>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="Aut_Password" type="password" placeholder="Пароль" >
-            <p>Ещё нет аккаунта ? <a href="/Home/Autorization2">Зарегистрироваться</a>.</p>
-            <a href="/Home/profile"><button type="submit" class="btn">Войти</button></a>
-            </form>
-            <h3>Войти с помощью:</h3>
-            <form asp-controller="Home" asp-action="Google" asp-route-provider="Google" method="post">
-    <button  class="Signgoogle" type="submit" >
-        <img src="/img/google_pin.jpg" alt="Sign with Google" width="50px" style="border-radius: 6px;" />
-    </button>
-</form>
-
+        <h2>ПОДДЕРЖКА</h2>
+        <p>Учитывайте, что ответ придёт на электронную почту привязанную к аккаунту.</p>
+        <div class="Input_problem">
+        <textarea asp-for="Problem" placeholder="Опишите свою проблему" maxlength="3000"></textarea>
+        </div>
+        <button type="submit" class="Send">Отправить</button>
     </main>
     <footer>    
         <section class="description"> 
@@ -87,8 +99,8 @@
 Использование данного сайта означает ваше согласие с нашей Политикой конфиденциальности, Условиями предоставления услуг и использованием файлов cookie. Эти данные помогают нам улучшать сервис, анализировать трафик и персонализировать контент. Вы можете запретить сохранение cookies в настройках браузера, но некоторые функции сайта могут стать недоступными.
 
 Для соискателей и работодателей: размещая резюме или вакансии, вы подтверждаете, что предоставляете достоверную информацию и даёте согласие на её обработку в соответствии с ФЗ-152 "О персональных данных".</p>
+        </section>
     </footer>
 <body>
 
 </body>
-</html>

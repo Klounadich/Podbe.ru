@@ -37,6 +37,11 @@ namespace sait.Controllers
             return View();
         }
 
+        public IActionResult Support()
+        {
+            return View();
+        }
+
         public IActionResult Form() // Страница формы (Views/Home/Form.cshtml)
         {
             return View();

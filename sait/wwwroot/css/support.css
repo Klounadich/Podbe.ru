@@ -1,0 +1,246 @@
+﻿body {
+    font-family: "Rubik", "sans-serif";
+    font-weight: 400px;
+    height: 100vh;
+    width: 100vw;
+    background-color: #9a8abea4;
+}
+
+header {
+    height: 100px;
+    background-color: #232536;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.Logo_Text {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+    .Logo_Text a {
+        text-decoration: none;
+        color: white;
+    }
+
+.Header_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+.information {
+    width: 120px;
+    text-align: center;
+    height: 4px;
+    background: #FFD050;
+    position: relative;
+    top: 25px;
+    margin-right: 25px;
+}
+
+
+    .information h4 {
+        position: relative;
+        top: -60px;
+        font-size: 20px;
+    }
+
+    .information a {
+        text-decoration: none;
+        color: white;
+        transition: transform .5s;
+    }
+
+    .information:hover {
+        transform: scale(1.03);
+    }
+
+    .information:active {
+        transform: scale(0.90);
+    }
+
+.Right {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+    .Right button {
+        transition: transform .5s;
+        cursor: pointer;
+        border: none;
+        color: #232536;
+        font-size: 20px;
+        font-weight: bold;
+        width: 160px;
+        height: 50px;
+        background-color: #FFD050;
+        border-radius: 10px;
+        margin-right: 20px;
+    }
+
+        .Right button:hover {
+            transform: scale(1.03);
+        }
+
+        .Right button:active {
+            transform: scale(0.97);
+        }
+
+.Settings_Button {
+    transition: transform .5s;
+}
+
+    .Settings_Button:hover {
+        transform: scale(1.03);
+    }
+
+    .Settings_Button:active {
+        transform: scale(0.97);
+    }
+
+main {
+    background-color: #9a8abea4;
+}
+
+    main h2 {
+        color: #3f3f41;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        font-size: 40px;
+    }
+
+    main p {
+        color: #3f3f41;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    main h3 {
+        color: aliceblue !important;
+    }
+
+    main h4 {
+        color: #3f3f41;
+        display: flex;
+        font-size: 30px;
+    }
+
+.account_info {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+/* Стили для textarea (как у вас) */
+.Input_problem {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирует всё по горизонтали */
+    gap: 20px; /* Отступ между textarea и кнопкой */
+    max-width: 900px;
+    margin: 0 auto; /* Центрирует форму на странице */
+    background-color:white;
+    width: 100%;
+    border: 2px solid #FFD050;
+    border-radius: 13px;
+    padding: 10px; /* Чтобы граница не "прилипала" к тексту */
+}
+
+    .Input_problem textarea {
+        width: 100%;
+        height: 600px;
+        border: none; /* Убираем двойную границу */
+        outline: none; /* Убираем стандартный фокус */
+        resize: none;
+        background: transparent; /* Чтобы фон textarea не перекрывал границу */
+    }
+
+/* Стили для кнопки (упрощённые) */
+.Send {
+    display: block; /* Делаем блочным элементом */
+    width: 360px;
+    height: 50px;
+    margin: 20px auto;
+    background: #FFD050;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+    .Send:hover {
+        transform: scale(1.03);
+    }
+
+main h1 {
+    color: #3f3f41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+
+footer {
+    font-family: "Rubik", "sans-serif";
+    font-weight: 400px;
+    color: #979797;
+    background-color: #515153;
+    height: 100px;
+}
+
+.description {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+
+.No_request {
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column; /* Располагаем элементы вертикально */
+    align-items: center; /* Центрирование по горизонтали */
+    justify-content: center; /* Центрирование по вертикали */
+    text-align: center; /* Центрирование текста */
+    height: 200px; /* Фиксированная высота для наглядности */
+}
+
+.btn-danger:hover {
+    transform: scale(1.03);
+}
+
+.btn-danger:active {
+    transform: scale(0.97);
+}
