@@ -38,7 +38,7 @@
                 <a href="/Home/Index"><h4>О нас</h4></a>
             </div>
          <div class="information">
-                <a href="https://support.google.com/"><h4>Поддержка</h4></a>
+                <a asp-controller="Home" asp-action="Support"><h4>Поддержка</h4></a>
             </div>
         </section>
         <section class="Right">
@@ -93,7 +93,7 @@
             <h3>Зарегестрироваться с помощью:</h3>
             <form asp-controller="Home" asp-action="Google" asp-route-provider="Google" method="post">
     <button  class="Signgoogle" type="submit" >
-        <img src="/img/google_pin.jpg" alt="Sign with Google" width="50px" style="border-radius: 6px;" />
+        <img src="/img/google_pin.jpg" alt="Sign with Google" width="60px" style="border-radius: 6px;" />
     </button>
 </form>
         </div>
